@@ -1,0 +1,13 @@
+{% extends 'adminbase.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<br>
+<h1 class="text-center ">Add New Course</h1>
+<div class="container text-center col-9 ">
+    <form method="POST">
+        {% csrf_token %}
+        {{form|crispy}}
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock%}

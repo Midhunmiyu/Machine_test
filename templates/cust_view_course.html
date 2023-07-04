@@ -1,0 +1,42 @@
+{% extends 'customerbase.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<br>
+<h1 class="text-center">Course List</h1><br>
+<div class="col-xl-10 mx-auto">
+<table class="table table-info">
+  <thead>
+    <tr >
+      <th scope="col">SL.NO</th>
+      <th scope="col">Course Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Duration</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    {% for data in page_obj.object_list %}
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{data.name}}</td>
+      <td>{{data.desc}}</td>
+      <td>{{data.duration}}</td>
+
+    </tr>
+    {% endfor %}
+  </tbody>
+
+</table>
+    <center>
+        {%if page_obj.has_previous %} {# whether the previous page exists #}
+            <a href="?page={{page_obj.previous_page_number}}" ><-- Previous</a> {# link to the prev page #}
+        {% endif %}
+        <span>{{page_obj.number}}</span> {# the current page number #}
+
+        {%if page_obj.has_next %} {# whether the next page exists #}
+            <a href="?page={{page_obj.next_page_number}}">Next--></a> {# link to the next page #}
+        {% endif %}
+  </center>
+    <br>
+</div>
+{% endblock %}
